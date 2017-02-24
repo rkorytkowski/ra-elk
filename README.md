@@ -50,6 +50,22 @@ Application will be accessible on http://localhost/openmrs.
 Note that in contrary to the development mode the OpenMRS server is exposed on port 80 instead of 8080.
 No other ports are exposed in the production mode.
 
+## Elasticsearch, Logstash, Kibana (ELK)
+
+To start Reference Application with ELK in develop mode 
+
+```
+docker-compose -f docker-compose.yml -f docker-compose.elk.yml up
+```
+
+in production mode 
+
+```
+docker-compose -f docker-compose.yml -f docker-compose.prod.yml -f docker-compose.elk.yml up
+```
+
+Kibana will be accessible on http://localhost:5601.
+
 ## Customisations
 
 The `docker-compose.yml` is an example and can be customised. The next time you run openmrs-sdk:build-distro, it will
