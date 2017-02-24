@@ -32,45 +32,6 @@ services:
       - /usr/local/tomcat/.OpenMRS/modules/ # used to mount persistent docker volume for modules
       - /usr/local/tomcat/.OpenMRS/owa/     # used to mount persistent docker volume for owa
 
-  elasticsearch:
-    image: elasticsearch
-    ports:
-      - "9200:9200"
-      - "9300:9300"
-    environment:
-      - Xmx1g- ES_JAVA_OPTS=-Xmx1g -Xms1g
-    command: elasticsearch 
-    volumes:
-      - elasticsearch:/usr/share/elasticsearch/data
-
-  logstash:
-    image: logstash
-    command: -f /etc/logstash/conf.d/
-    volumes:
-      - ./logstash/config:/etc/logstash/conf.d
-    ports:
-      - "5000:5000"
-    environment:
-      - LS_HEAP_SIZE=2048m
-    links:
-      - elasticsearch
-    depends_on:
-      - elasticsearch
-
-  kibana:
-    image: kibana
-    volumes:
-      - ./kibana/config/:/etc/kibana/
-    ports:
-      - "5601:5601"
-    depends_on:
-      - elasticsearch
-    environment:
-      - ELASTICSEARCH_URL=http://elasticsearch:9200
-    links:
-      - elasticsearch
-
 volumes:
   db-data:
   web-data:
-  elasticsearch:
