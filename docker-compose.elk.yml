@@ -10,7 +10,7 @@ services:
       - Xmx1g- ES_JAVA_OPTS=-Xmx1g -Xms1g
     command: elasticsearch 
     volumes:
-      - elasticsearch:/usr/share/elasticsearch/data
+      - elasticsearch-data:/usr/share/elasticsearch/data
 
   logstash:
     image: logstash
@@ -40,4 +40,4 @@ services:
       - elasticsearch
 
 volumes:
-  elasticsearch:
+  elasticsearch-data:
